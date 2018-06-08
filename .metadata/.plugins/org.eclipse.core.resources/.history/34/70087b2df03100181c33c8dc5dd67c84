@@ -1,0 +1,16 @@
+
+public class Square {
+
+	public boolean isBomb = true;
+	
+	
+
+	public boolean isBomb() {
+		return isBomb;
+	}
+
+	public void setBomb(boolean isBomb) {
+		this.isBomb = isBomb;
+	}
+	
+}

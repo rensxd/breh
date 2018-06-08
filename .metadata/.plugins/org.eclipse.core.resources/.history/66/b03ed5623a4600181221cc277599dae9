@@ -1,0 +1,30 @@
+import java.util.Random;
+
+public class Tiles {
+	
+	String type;
+	
+	Tiles(String type, int x, int y){
+		this.type = type;
+		
+	}
+	
+	void getRandomType() {
+		Random random = new Random();
+		String[] randomType = new String[5];
+		randomType[0] = "Wood";
+		randomType[1] = "Erts";
+		randomType[2] = "Graan";
+		randomType[3] = "Steen";
+		randomType[4] = "Wol";
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+}

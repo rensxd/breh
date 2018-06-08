@@ -1,0 +1,43 @@
+
+public class GroupOfPeople {
+
+	private Person[] persons = new Person[2];
+
+	public void addPerson(Person person) {
+
+		int i = 0;
+		boolean toegevoegd = false;
+
+		while (i < persons.length) {
+			if (persons[i] == null) {
+			 persons[i] = person;
+			 toegevoegd = true;
+			 break;
+			}
+			i++;
+		}
+		if (toegevoegd == false) {
+			System.out.println("Geen plek voor person");
+		}
+
+	}
+
+	public void findOldest() {
+
+		int largest = 0;
+		int i = 0;
+
+		while (i < persons.length) {
+			largest = persons[i].getAge();
+			
+			if (largest < persons[i].getAge()) {
+				i++;
+			} else {
+				System.out.println("The one with the oldest age is: " + persons[i].getName());
+			}
+			i++;
+		}
+
+	}
+
+}

@@ -1,0 +1,33 @@
+
+public class Zoo {
+	
+	
+	Animal[] animals;
+
+		
+	
+	
+	public void addAnimal(Animal animal) {
+		
+//		int i = 0;
+//		while (i < animals.length) {
+//			animals[i] = animal;
+//			i++;
+//		}
+		
+		for (int t = 0; t < animals.length; t++) {
+			animals[t] = animal;
+		}
+		
+	}
+	
+	
+	public void animalEat() {
+		
+		for(Animal a : animals) {
+			a.Eat();
+		}
+		
+	}
+
+}

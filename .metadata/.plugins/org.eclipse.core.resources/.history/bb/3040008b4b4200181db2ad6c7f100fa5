@@ -1,0 +1,15 @@
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPane extends JPanel {
+	
+	JPanel mySquare = new JPanel();
+	mySquare
+
+//	JPanel mySquare2 = new JPanel();
+//	JPanel mySquare3 = new JPanel();
+//	JPanel mySquare4 = new JPanel();
+
+	
+	
+}

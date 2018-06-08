@@ -1,0 +1,45 @@
+
+public class Coffee {
+	
+	String name;
+	int size;
+	
+	
+	Coffee(String name, int size){
+		this.name = name;
+		this.size = size;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSize() {
+		if (size == 1) {
+			return "klein";
+		}
+		
+		if (size == 2) {
+			return "middel";
+		}
+		
+		if (size == 3) {
+			return "groot";
+		}
+		return "";
+	
+		
+		
+	}
+	public void setSize(int size) {
+		if (size > 0) {
+			if (size < 4) {
+				this.size = size;
+			}
+		}
+		
+	}
+
+}

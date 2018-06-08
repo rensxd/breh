@@ -1,0 +1,61 @@
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+@SuppressWarnings("serial")
+public class MyGui extends JFrame {
+	
+	
+	
+	MyGui(){
+		
+		MyContentPane myContentPane = new MyContentPane();
+		createMenus();
+		create();
+		myContentPane.setPreferredSize(new Dimension(350,250));
+		setContentPane(myContentPane);
+		
+		
+	}
+	
+	public void create() {
+		
+//		JFrame myFrame = new JFrame();
+		
+		setPreferredSize(new Dimension(350,250));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+		setVisible(true);
+		
+	}
+	
+	public void createMenus() {
+		
+		JMenuBar myMenuBar = new JMenuBar();
+		JMenu myFile = new JMenu("File");
+		JMenu myLayout = new JMenu("Layout");
+		
+		JMenuItem myExit = new JMenuItem("Exit");
+		
+		JMenuItem myBorderLayout = new JMenuItem("Border Layout");
+		JMenuItem myBoxLayout = new JMenuItem("Box Layout");
+		JMenuItem myFlowLayout = new JMenuItem("Flow Layout");
+		JMenuItem myGridLayout = new JMenuItem("Grid Layout");
+		
+		myMenuBar.add(myFile);
+		myMenuBar.add(myLayout);
+		
+		myFile.add(myExit);
+		
+		myLayout.add(myGridLayout);
+		myLayout.add(myBoxLayout);
+		myLayout.add(myBorderLayout);
+		myLayout.add(myFlowLayout);
+		
+		this.setJMenuBar(myMenuBar);
+	}
+
+}

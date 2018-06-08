@@ -1,0 +1,23 @@
+
+public class Square {
+
+	private boolean isBomb;
+	private boolean isClicked;
+	
+	public Square() {
+		isBomb = false;
+		isClicked = false;
+	}
+
+	public boolean isBomb() {
+		return isBomb;
+	}
+
+	public void setBomb(boolean isBomb) {
+		this.isBomb = isBomb;
+	}
+
+	public boolean isClicked() {
+		return isClicked;
+	}
+}

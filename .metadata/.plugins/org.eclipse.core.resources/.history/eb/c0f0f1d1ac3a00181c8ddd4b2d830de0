@@ -1,0 +1,307 @@
+import java.util.HashMap;
+import java.util.Random;
+
+public class MineField {
+
+	// variables //
+
+	private HashMap<String, Square> squares;
+	private int nrOfTotalBombs;
+	private int bombChance;
+	private Random random;
+	private int fieldSize;
+	private int nrOfMarkedBombSquares;
+
+	public MineField(int fieldSize, int bombChance) {
+
+		// initialize //
+		this.fieldSize = 0;
+		this.nrOfTotalBombs = 0;
+		this.nrOfMarkedBombSquares = 0;
+
+		this.fieldSize = fieldSize;
+		this.bombChance = bombChance;
+
+		random = new Random();
+		squares = new HashMap<String, Square>();
+
+		makeField();
+
+	}
+	// public methods //
+
+	public void print() {
+		// print the grid //
+
+		for (int y = 0; y < fieldSize; y++) {
+			System.out.println(" ");
+			int index = fieldSize - y;
+			printSideAxisIndex(index);
+			printRowOfSquares(index);
+		}
+		System.out.println("");
+		printlowerAxis();
+
+		// print cheat grid //
+		if (MainClass.CHEAT) {
+			for (int y = 0; y < fieldSize; y++) {
+				System.out.println(" ");
+				int index = fieldSize - y;
+				printSideAxisIndex(index);
+				printCheatRow(index);
+			}
+			System.out.println("");
+			printlowerAxis();
+		}
+	}
+
+	public void replaceFirstBombIfChosen(String input) {
+		boolean replaceBomb = true;
+		while (replaceBomb) {
+			int randomNum = random.nextInt(fieldSize) + 1;
+			char a = (char) (random.nextInt(fieldSize) + 'A');
+			String randomKey = "" + a + randomNum;
+			if (!squares.get(randomKey).isBomb() && !squares.get(randomKey).equals(squares.get(input))) {
+				squares.get(randomKey).setBomb(true);
+				calculateNrOfBombsAround();
+				replaceBomb = false;
+			}
+		}
+	}
+
+	public boolean areOnlyAndAllBombsMarked() {
+		int nrOfMarkedSquares = 0;
+		for (String key : squares.keySet()) {
+			if (squares.get(key).isMarked()) {
+				nrOfMarkedSquares++;
+			}
+		}
+		// only win if all bombs and only bombs are marked //
+		if (nrOfMarkedSquares == nrOfMarkedBombSquares && nrOfMarkedBombSquares == nrOfTotalBombs) {
+			return true;
+		}
+		return false;
+	}
+
+	public void setSquareOnTested(String key) {
+		squares.get(key).setTested(true);
+		if (squares.get(key).getNrOfBombsAround() == 0 && !squares.get(key).isMarked()) {
+			splitKey(key);
+		}
+	}
+
+	public void setSquareOnMarked(String key) {
+		squares.get(key).setMarked(true);
+		if (squares.get(key).isBomb()) {
+			nrOfMarkedBombSquares++;
+		}
+	}
+
+	public void setSquareOffMarked(String key) {
+		squares.get(key).setMarked(false);
+		if (squares.get(key).isBomb()) {
+			nrOfMarkedBombSquares--;
+		}
+	}
+
+	public Square getSquare(String key) {
+		return squares.get(key);
+	}
+
+	// private methods //
+
+	private void makeField() {
+
+		for (char x = 'A'; x < ('A' + fieldSize); x++) {
+			for (int y = 1; y <= fieldSize; y++) {
+				String key = "" + x + y;
+				squares.put(key, new Square());
+				determineIfSquareIsBomb(key);
+			}
+		}
+		if (nrOfTotalBombs < 1) {
+			addRandomBombToField();
+		}
+		calculateNrOfBombsAround();
+
+	}
+
+	private void printCheatRow(int numbers) {
+		for (char c = 'A'; c < ('A' + fieldSize); c++) {
+			String key = "" + c + numbers;
+			if (!squares.get(key).isBomb()) {
+				System.out.print(" ~");
+			} else {
+				System.out.print(" *");
+			}
+		}
+	}
+
+	private void printRowOfSquares(int number) {
+		for (char c = 'A'; c < ('A' + fieldSize); c++) {
+			String key = "" + c + number;
+			if (!squares.get(key).isMarked() && !squares.get(key).isTested()) {
+				System.out.print(" .");
+			}
+			if (squares.get(key).isMarked() || squares.get(key).isMarked() && squares.get(key).isTested()) {
+				System.out.print(" *");
+			}
+			if (!squares.get(key).isMarked() && squares.get(key).isTested()) {
+				System.out.print(" " + squares.get(key).getNrOfBombsAround());
+			}
+		}
+	}
+
+	private void printSideAxisIndex(int index) {
+		if (index < 10) {
+			System.out.print(" ");
+		}
+		System.out.print(index);
+	}
+
+	private void printlowerAxis() {
+		System.out.print("  ");
+		char a = 'A';
+		for (int i = 0; i < fieldSize; i++) {
+			System.out.print(" " + a);
+			a++;
+		}
+		System.out.println("");
+	}
+
+	private void determineIfSquareIsBomb(String key) {
+		int randomNum = random.nextInt(100) + 1;
+		if (randomNum <= bombChance) {
+			squares.get(key).setBomb(true);
+			nrOfTotalBombs++;
+		}
+	}
+
+	private void addRandomBombToField() {
+		char a = (char) (random.nextInt(fieldSize) + 'A');
+		int randomNum = random.nextInt(fieldSize) + 1;
+		String randomBomb = "" + a + randomNum;
+		squares.get(randomBomb).setBomb(true);
+		nrOfTotalBombs++;
+	}
+
+	private void splitKey(String key) {
+		char x = key.charAt(0);
+		String[] s = key.split("");
+		String b = s[1];
+		if (key.length() > 2) {
+			b = s[1] + s[2];
+		}
+		int y = Integer.parseInt(b);
+		setSquaresAroundOnTested(x, y);
+	}
+
+	private void calculateNrOfBombsAround() {
+		for (char x = 'A'; x < ('A' + fieldSize); x++) {
+			for (int y = 1; y <= fieldSize; y++) {
+				String key = "";
+				int nrOfBombsAround = 0;
+
+				// check if square below is bomb //
+				if (squares.containsKey((key + x) + (y - 1)) && squares.get((key + x) + (y - 1)).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square above is bomb //
+				if (squares.containsKey((key + x) + (y + 1)) && squares.get((key + x) + (y + 1)).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square left above is bomb //
+				if (squares.containsKey((key + (char) (x - 1) + (y + 1)))
+						&& squares.get((key + (char) (x - 1) + (y + 1))).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square right above is bomb //
+				if (squares.containsKey((key + (char) (x + 1) + (y + 1)))
+						&& squares.get((key + (char) (x + 1) + (y + 1))).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square right is bomb //
+				if (squares.containsKey((key + (char) (x + 1) + (y)))
+						&& squares.get((key + (char) (x + 1) + (y))).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square right below is bomb //
+				if (squares.containsKey((key + (char) (x + 1) + (y - 1)))
+						&& squares.get((key + (char) (x + 1) + (y - 1))).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square left is bomb //
+				if (squares.containsKey((key + (char) (x - 1) + (y)))
+						&& squares.get((key + (char) (x - 1) + (y))).isBomb()) {
+					nrOfBombsAround++;
+				}
+				// check if square left below is bomb //
+				if (squares.containsKey((key + (char) (x - 1) + (y - 1)))
+						&& squares.get((key + (char) (x - 1) + (y - 1))).isBomb()) {
+					nrOfBombsAround++;
+				}
+				squares.get(key + x + y).setNrOfBombsAround(nrOfBombsAround);
+			}
+		}
+	}
+
+	private void setSquaresAroundOnTested(char x, int y) {
+		String key = "";
+		if (squares.get(key + x + y).getNrOfBombsAround() == 0) {
+			for (char a = ((char) (x - 1)) ; a < ((char) (x + 2)); a++) {
+				for (int b = (y-1); b < (y + 2); b++) {
+					if (squares.containsKey((key + (char) + (a) + (b))) && !squares.get((key + (char) (a) + (b))).isMarked() && !squares.get((key + (char) (a) + (b))).isTested()) {
+						setSquareOnTested((key + (char) (a) + (b)));
+					}
+				}
+			}
+//			
+//			// set square below on tested //
+//			if (squares.containsKey((key + x) + (y - 1)) && !squares.get((key + x) + (y - 1)).isTested()
+//					&& !squares.get((key + x) + (y - 1)).isMarked()) {
+//				setSquareOnTested((key + x) + (y - 1));
+//			}
+//			// set square above on tested //
+//			if (squares.containsKey((key + x) + (y + 1)) && !squares.get((key + x) + (y + 1)).isTested()
+//					&& !squares.get((key + x) + (y + 1)).isMarked()) {
+//				setSquareOnTested((key + x) + (y + 1));
+//			}
+//			// set square left above on tested //
+//			if (squares.containsKey((key + (char) (x - 1) + (y + 1)))
+//					&& !squares.get((key + (char) (x - 1) + (y + 1))).isTested()
+//					&& !squares.get((key + (char) (x - 1) + (y + 1))).isMarked()) {
+//				setSquareOnTested(key + (char) (x - 1) + (y + 1));
+//			}
+//			// set square right above on tested //
+//			if (squares.containsKey((key + (char) (x + 1) + (y + 1)))
+//					&& !squares.get((key + (char) (x + 1) + (y + 1))).isTested()
+//					&& !squares.get((key + (char) (x + 1) + (y + 1))).isMarked()) {
+//				setSquareOnTested(key + (char) (x + 1) + (y + 1));
+//			}
+//			// set square right on tested //
+//			if (squares.containsKey((key + (char) (x + 1) + (y)))
+//					&& !squares.get((key + (char) (x + 1) + (y))).isTested()
+//					&& !squares.get((key + (char) (x + 1) + (y))).isMarked()) {
+//				setSquareOnTested(key + (char) (x + 1) + (y));
+//			}
+//			// set square right below on tested //
+//			if (squares.containsKey((key + (char) (x + 1) + (y - 1)))
+//					&& !squares.get((key + (char) (x + 1) + (y - 1))).isTested()
+//					&& !squares.get((key + (char) (x + 1) + (y - 1))).isMarked()) {
+//				setSquareOnTested(key + (char) (x + 1) + (y - 1));
+//			}
+//			// set square left on tested //
+//			if (squares.containsKey((key + (char) (x - 1) + (y)))
+//					&& !squares.get((key + (char) (x - 1) + (y))).isTested()
+//					&& !squares.get((key + (char) (x - 1) + (y))).isMarked()) {
+//				setSquareOnTested(key + (char) (x - 1) + (y));
+//			}
+//			// set square left below on tested //
+//			if (squares.containsKey((key + (char) (x - 1) + (y - 1)))
+//					&& !squares.get((key + (char) (x - 1) + (y - 1))).isTested()
+//					&& !squares.get((key + (char) (x - 1) + (y - 1))).isMarked()) {
+//				setSquareOnTested(key + (char) (x - 1) + (y - 1));
+//			}
+		}
+	}
+}

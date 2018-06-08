@@ -1,0 +1,52 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPane extends JPanel {
+	
+	
+	JPanel myPanel = new JPanel();
+
+	public MyContentPane(){
+		create();
+	}
+	
+	
+	public void create() {
+		
+		myPanel.setPreferredSize(new Dimension(300, 300));
+		myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
+		
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.RED);
+		panel1.setBounds(0, 0, 150, 150);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.GREEN);
+		panel2.setBounds(150, 0, 150, 150);
+
+		JPanel panel3 = new JPanel();
+		panel3.setBackground(Color.BLUE);
+		panel3.setBounds(0, 150, 150, 150);
+		
+		JPanel panel4 = new JPanel();
+		panel4.setBackground(Color.YELLOW);
+		panel4.setBounds(150, 150, 150, 150);
+		
+		myPanel.add(panel1, BorderLayout.NORTH);
+		myPanel.add(panel2, BorderLayout.EAST);
+		myPanel.add(panel3, BorderLayout.WEST);
+		myPanel.add(panel4, BorderLayout.SOUTH);
+		
+		
+	}
+	
+	
+	
+	
+	
+}

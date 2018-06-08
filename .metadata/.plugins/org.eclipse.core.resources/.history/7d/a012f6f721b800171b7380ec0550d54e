@@ -1,0 +1,63 @@
+
+public class School {
+
+	String name;
+	Kind[] capa;
+
+	School(String name, int cap) {
+
+		this.name = name;
+		
+		int i = 0;
+		
+		i = cap;
+		
+		this.capa = new Kind[i];
+
+	}
+
+	void plaatsKind(Kind kind) {
+
+		int counter = 0;
+
+		while (counter < capa.length) {
+			if (capa[counter] == null) {
+				capa[counter] = kind;
+				break;
+				
+			} else {
+				System.out.println("Er is helaas geen plek meer voor " + kind.name + " op deze school");
+			}
+			counter++;
+		}
+	}
+
+	void printSchool() {
+
+		int counter = 0;
+
+		System.out.println(name);
+		while (counter < capa.length) {
+			if (capa[counter] != null) {
+				capa[counter].printInfo();
+			
+			}
+			counter++;
+
+		}
+
+		counter = 0;
+		double bedrag = 0;
+
+		System.out.print("Het totaalbedrag van alle spaarpotten van alle kinderen samen = ");
+		while (counter < capa.length) {
+			if (capa[counter] != null) {
+				bedrag = bedrag + capa[counter].spaarpot.getGespaardBedrag();
+				counter++;
+			}
+			
+		}
+		System.out.println(bedrag);
+
+	}
+}

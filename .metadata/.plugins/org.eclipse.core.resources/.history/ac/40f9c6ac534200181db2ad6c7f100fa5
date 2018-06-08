@@ -1,0 +1,56 @@
+
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPanel extends JPanel
+{
+	final int linewidth = 40;
+	int dotcount;
+
+	public MyContentPanel()
+	{
+		super();
+		
+		GridLayout myGridLayout = new GridLayout(2, 2, 0, 0);
+		setLayout(myGridLayout);
+		
+		setPreferredSize(new Dimension(300,300));
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.red);
+		JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.green);
+		JPanel panel3 = new JPanel();
+		panel3.setBackground(Color.blue);
+		JPanel panel4 = new JPanel();
+		panel4.setBackground(Color.yellow);
+		add(panel1);
+		add(panel2);
+		add(panel3);
+		add(panel4);
+		dotcount = 0;
+	}
+
+	@Override
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		System.out.print(" +");
+		dotcount++;
+		if (dotcount >linewidth )
+		{
+			System.out.println("");
+			dotcount = 0;
+		}
+				
+		
+		
+	}
+
+	
+}

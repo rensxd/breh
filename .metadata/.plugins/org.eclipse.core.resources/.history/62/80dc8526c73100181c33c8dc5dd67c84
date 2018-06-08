@@ -1,0 +1,62 @@
+import java.util.HashMap;
+
+public class MineField {
+
+	HashMap<String, Square> vakje;
+	int bombFound;
+	Game game;
+	char a;
+	int aantal;
+	int veldGroote;
+	String hm;
+
+
+	MineField(){
+		
+		vakje = new HashMap<String, Square>();
+		makeField();
+	}
+	
+	
+	void makeField() {
+		
+		this.a = 'A';
+		for (int i = 1; i <= this.aantal; i++) {
+			vakje.put("" + a + i, new Square());
+			
+		}
+		vakje.get(hm);
+		System.out.println("ddd " + vakje.keySet());
+		
+		
+		System.out.println(getVeldGroote() + " en ");
+		
+		
+	}
+	
+	public int getVeldGroote() {
+		return veldGroote;
+	}
+
+
+	public void setVeldGroote(String veldGroote) {
+		this.hm = veldGroote;
+		this.aantal = Integer.parseInt(veldGroote);
+		
+	}
+	
+	public void print() {
+		
+		
+		
+		
+		
+		if (MainClass.CHEAT) {
+			
+			
+		}
+		
+	}
+	
+	
+}

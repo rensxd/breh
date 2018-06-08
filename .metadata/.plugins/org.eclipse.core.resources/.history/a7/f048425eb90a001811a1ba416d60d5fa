@@ -1,0 +1,39 @@
+
+public class Zoo {
+		
+	Animal[] animals;
+	
+	public Zoo(String naam, int x) {
+		animals = new Animal[x];
+	}
+
+	public void addAnimal(Animal animal) {
+		
+//		int i = 0;
+//		
+//		while (i < animals.length) {
+//			animals[i] = animal;
+//			i++;
+//			
+		for (int i=0;i<animals.length; i++) {
+			animals[i] = animal;
+			System.out.println(animals[i].eetgeluid);
+			break;
+		}
+		
+		
+		
+		
+	}
+	
+	public void animalEat() {
+		
+		for(Animal a : animals) {
+			a.Eat();
+		}
+		
+	}
+	
+	
+
+}

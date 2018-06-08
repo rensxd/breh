@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class MineSweeper {
+
+	Scanner scanner;
+	int fieldSize;
+	Game game;
+
+	MineSweeper() {
+
+		scanner = new Scanner(System.in);
+		
+	}
+
+	public void start() {
+
+		
+		System.out.println("Hoe groot moet het veld zijn? Kies tussen de 5 en de 20");
+		if (scanner.hasNextInt()) {
+			fieldSize = scanner.nextInt();
+			System.out.println("DEBUGG: " + fieldSize);
+			
+			game.setGrootte(fieldSize);
+			game = new Game();
+			
+			
+		}
+		
+
+	}
+
+	void setfieldSize(int fieldSize) {
+		this.fieldSize = fieldSize;
+	}
+
+	int getfieldSize() {
+		return fieldSize;
+	}
+
+}

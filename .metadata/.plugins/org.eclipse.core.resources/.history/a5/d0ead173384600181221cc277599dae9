@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Bord {
+	
+	HashMap<Integer, Tiles> tiles;
+	ArrayList<LocationPoint> locationpoints;
+	
+	Bord(){
+		
+		tiles = new HashMap<Integer, Tiles>();
+		locationpoints = new ArrayList<LocationPoint>();
+	}
+	
+	void addTiles(){
+		
+		int a = 1;
+		int b = 1;
+		for (int i = 1; i < 4; i++) {
+			tiles.put(i, new Tiles("Wood", a, b));
+			a++;
+			b++;
+		}
+		
+	}
+	
+	void addLocationPoints(){
+		int a = 1;
+		for (int i = 3; i < 5; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 2; i < 7; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 1; i < 9; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 1; i < 10; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 2; i < 10; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 2; i < 11; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 3; i < 11; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 3; i < 12; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 4; i < 12; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 6; i < 11; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		a++;
+		for (int i = 8; i < 10; i++) {
+			locationpoints.add(new LocationPoint(a, i));
+		}
+		
+		
+		
+	}
+
+}

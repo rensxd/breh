@@ -1,0 +1,29 @@
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class OneButtonGui {
+
+	JFrame myFrame = new JFrame();
+	JButton myButton = new JButton();
+	
+	
+	
+	
+	public void create() {
+		
+		myFrame.setPreferredSize(new Dimension(300,300));
+		myFrame.setTitle("Push that button");
+		myFrame.setVisible(true);
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myFrame.pack();
+		
+		myButton.setText("Start");
+		
+		myFrame.add(myButton);
+		
+		
+	}
+	
+}

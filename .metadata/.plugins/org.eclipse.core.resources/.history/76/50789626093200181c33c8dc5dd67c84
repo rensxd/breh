@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Game {
+
+	MineField field;
+	Scanner input;
+	int grootte;
+	MineSweeper ms;
+
+	public Game(int grootte) {
+		this.grootte = grootte;
+
+		setGrootte(grootte);
+
+		field = new MineField();
+		field.setVeldGrootte(grootte);
+		field.makeField();
+		field.printsideAxis();
+		field.print();
+		field.printlowerAxis();
+
+	}
+
+	void setGrootte(int grootte) {
+		this.grootte = grootte;
+	}
+
+	int getGrootte() {
+		return grootte;
+	}
+
+	// void geefGrootteDoor() {
+	//// this.grootte = ms.getfieldSize();
+	//// field.setVeldGrootte(this.grootte);
+	// }
+
+	public void play() {
+
+	}
+
+}

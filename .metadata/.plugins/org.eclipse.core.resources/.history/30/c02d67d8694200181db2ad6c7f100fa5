@@ -1,0 +1,43 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPane extends JPanel {
+
+	boolean buttonpressed = false;
+	JButton myButton = new JButton("Knop");
+	
+	MyContentPane(){
+		super();
+		setLayout(null);
+		setPreferredSize(new Dimension(400, 300));
+		add(myButton);
+		myButton.setBounds(0, 300, 100, 100);
+		myButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buttonpressed = true;
+				myButton.setText("Done");
+				repaint();		
+			}
+			});
+	
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		
+		if (buttonpressed = false) {
+			g.setColor(Color.RED);
+		}
+		if (buttonpressed = true) {
+			g.setColor(Color.YELLOW);
+		}
+		
+	}
+}

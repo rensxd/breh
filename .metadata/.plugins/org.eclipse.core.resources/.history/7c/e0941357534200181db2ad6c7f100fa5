@@ -1,0 +1,53 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPane extends JPanel {
+	
+	final int a;
+	int counter;
+	JPanel myPanel = new JPanel();
+
+	public MyContentPane(){
+		super();
+		a = 40;
+		counter = 0;
+
+		setPreferredSize(new Dimension(300, 300));
+		setLayout(new GridLayout(2, 2, 0, 0));
+		
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.RED);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.GREEN);
+
+		JPanel panel3 = new JPanel();
+		panel3.setBackground(Color.BLUE);
+		
+		JPanel panel4 = new JPanel();
+		panel4.setBackground(Color.YELLOW);
+		
+		add(panel1);
+		add(panel2);
+		add(panel3);
+		add(panel4);
+		
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		System.out.println("+");
+		counter++;
+		if (counter > a) {
+			System.out.println("");
+			counter = 0;
+		}
+		
+	}
+}
+	

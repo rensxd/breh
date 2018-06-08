@@ -1,0 +1,24 @@
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		
+//		Animal a = new Animal();
+//		Animal b = new Frog();
+//		Frog f = new Frog();
+//		a = f;
+//		// Frog k = new Animal(); // Je kan niet een object aanmaken als Animal met Frog. Dit komt omdat Animal de superklasse is. Daarom werkt de 2de parameter wel.
+//		// f = b; // Dit werkt niet omdat Frog een subclasse is. Die kan je niet gelijk maken aan een superclasse.
+//		
+		
+		Zoo zoo = new Zoo("Rens Dierentuin", 3);
+		
+		zoo.addAnimal(new Frog("broo", "rens"));
+		zoo.addAnimal(new Pig("lalala", "bert"));
+		zoo.addAnimal(new Bear("tututu", "henk"));
+
+		
+		zoo.animalEat();
+	}
+
+}

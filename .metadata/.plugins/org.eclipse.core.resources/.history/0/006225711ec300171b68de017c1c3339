@@ -1,0 +1,37 @@
+
+public class GroupOfPeople {
+
+	private Person[] persons = new Person[5];
+	
+	public void addPerson(Person person) {
+		
+		int i = 0;
+		
+		while (i < persons.length) {
+			persons[i] = person;
+			i++;
+		}
+		
+	}
+	
+	public void findOldest() {
+		
+		int largest = 0;
+		int i = 0;
+		
+		while (i < persons.length) {
+			largest = persons[i].getAge();
+			
+			if (largest < persons[i].getAge()) {
+				i++;
+			}
+			else {
+				System.out.println("The one with the oldest age is: " + persons[i].getName());
+			}
+			i++;
+		}
+		
+	}
+	
+	
+}

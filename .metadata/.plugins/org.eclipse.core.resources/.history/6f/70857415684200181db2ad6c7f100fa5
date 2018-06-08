@@ -1,0 +1,26 @@
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class MyGUI extends JFrame {
+
+	MyGUI(){
+		super();
+		setTitle("Paint Test");
+		MyContentPane mycontentpane = new MyContentPane();
+		setContentPane(mycontentpane);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setPreferredSize(new Dimension(300, 300));
+		setLayout(null);
+		setLocationRelativeTo(null);
+		setVisible(true);
+		pack();
+		
+	}
+	
+	void create(){
+
+	}
+	
+}

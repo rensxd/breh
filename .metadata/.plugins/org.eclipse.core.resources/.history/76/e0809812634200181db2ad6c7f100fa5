@@ -1,0 +1,36 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPane extends JPanel {
+	
+	JPanel myPanel = new JPanel();
+	JPanel myPanel2 = new JPanel();
+	JPanel myPanel3 = new JPanel();
+	
+	public void create() {
+		
+		myPanel.setPreferredSize(new Dimension(300, 300));
+		
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		g.setColor(Color.RED);
+
+		myPanel2.setBounds(0, 0, 300, 300);
+		g.setColor(Color.BLACK);
+
+		myPanel3.setPreferredSize(new Dimension(200, 200));
+		
+		myPanel.add(myPanel2);
+		myPanel.add(myPanel3);
+		
+	}
+	
+	
+}

@@ -1,0 +1,20 @@
+
+public class Animal {
+
+	String eetgeluid;
+	String naam;
+	
+	public Animal(String eetgeluid, String naam) {
+		this.eetgeluid = eetgeluid;
+		this.naam = naam;
+		
+	}
+
+
+	public void Eat() {
+		
+		System.out.println(eetgeluid);
+		
+	}
+
+}

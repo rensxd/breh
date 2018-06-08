@@ -1,0 +1,96 @@
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+@SuppressWarnings("serial")
+public class MyGui extends JFrame {
+	
+	MyContentPane myContentPane;
+	
+	MyGui(){
+		
+		myContentPane = new MyContentPane();
+
+		create();
+		createMenus();
+		
+		setContentPane(myContentPane);
+		myContentPane.setPreferredSize(new Dimension(350,250));
+		
+	}
+	
+	public void create() {
+		
+		setPreferredSize(new Dimension(350,250));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+		setVisible(true);
+		
+	}
+	
+	public void createMenus() {
+		
+		JMenuBar myMenuBar = new JMenuBar();
+		JMenu myFile = new JMenu("File");
+		JMenu myLayout = new JMenu("Layout");
+		
+		JMenuItem myExit = new JMenuItem("Exit");
+		
+		JMenuItem myBorderLayout = new JMenuItem("Border Layout");
+		JMenuItem myBoxLayout = new JMenuItem("Box Layout");
+		JMenuItem myFlowLayout = new JMenuItem("Flow Layout");
+		JMenuItem myGridLayout = new JMenuItem("Grid Layout");
+		
+		myMenuBar.add(myFile);
+		myMenuBar.add(myLayout);
+		
+		myFile.add(myExit);
+		myExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		
+		myLayout.add(myGridLayout);
+		myGridLayout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myContentPane.setGridLayout();
+				validate();
+			}
+		});
+		myLayout.add(myBoxLayout);
+		myBoxLayout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myContentPane.setBoxLayout();
+				validate();
+			}
+		});
+		myLayout.add(myBorderLayout);
+		myBorderLayout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myContentPane.setBorderLayout();
+				validate();
+			}
+		});
+		myLayout.add(myFlowLayout);
+		myFlowLayout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myContentPane.setFlowLayout();
+				validate();
+			}
+		});
+		
+		setJMenuBar(myMenuBar);
+	}
+
+}

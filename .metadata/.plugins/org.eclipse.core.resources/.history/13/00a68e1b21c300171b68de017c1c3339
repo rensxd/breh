@@ -1,0 +1,31 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		GroupOfPeople groupofpeople = new GroupOfPeople();
+		Person person1 = new Person();
+		Person person2 = new Person();
+		Person person3 = new Person();
+		Person person4 = new Person();
+		Person person5 = new Person();
+		
+		person1.setAge(22);
+		person2.setAge(33);
+		person3.setAge(23);
+		person4.setAge(44);
+		person5.setAge(99);
+		
+		groupofpeople.addPerson(person1);
+		groupofpeople.addPerson(person2);
+		groupofpeople.addPerson(person3);
+		groupofpeople.addPerson(person4);
+		groupofpeople.addPerson(person5);
+		
+		groupofpeople.findOldest();
+		
+		
+	}
+
+}

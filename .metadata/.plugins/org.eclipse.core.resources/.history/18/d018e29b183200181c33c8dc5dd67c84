@@ -1,0 +1,80 @@
+import java.util.HashMap;
+
+public class MineField {
+
+	private HashMap<String, Square> vakjes;
+	private int aantalVakjes;
+
+	MineField() {
+		vakjes = new HashMap<String, Square>();
+	}
+
+	void makeField() {
+
+		for (int i = 0; i < aantalVakjes; i++) {
+			for (int j = 1; j <= aantalVakjes; j++) {
+				String key = "" + ((char) ('a' + i)) + j;
+				vakjes.put(key, new Square());
+			}
+		}
+		System.out.println("DEBUG " + vakjes.keySet());
+
+	}
+
+	void printlowerAxis() {
+		System.out.print(" ");
+		char a = 'A';
+		for (int i = 0; i < aantalVakjes; i++) {
+			System.out.print(" " + a);
+			a++;
+		}
+		System.out.println("");
+	}
+
+	// void printsideAxis() {
+	// int o = aantalVakjes;
+	// int[] b = new int[o];
+	// int index = 0;
+	// while (index < b.length) {
+	// b[index] = o;
+	// System.out.println(b[index]);
+	//
+	// index++;
+	// o--;
+	// }
+	// }
+
+	public void setVeldGrootte(int veldGrootte) {
+		this.aantalVakjes = veldGrootte;
+
+	}
+
+	public int getVeldGrootte() {
+		return aantalVakjes;
+	}
+
+	public void print() {
+
+		char a = 'a';
+		for (int y = 0; y < aantalVakjes; y++) {
+			System.out.println(" ");
+			System.out.print((aantalVakjes - y));
+			if (aantalVakjes > 10) {
+				System.out.print(" ");
+			}
+			for (int x = 0; x < aantalVakjes; x++) {
+				if (vakjes.get(("" + a + (aantalVakjes - y))).isBomb()) {
+					System.out.print(" *");
+				}
+			}
+		}
+		System.out.println("");
+		this.printlowerAxis();
+
+		if (MainClass.CHEAT) {
+
+		}
+
+	}
+
+}

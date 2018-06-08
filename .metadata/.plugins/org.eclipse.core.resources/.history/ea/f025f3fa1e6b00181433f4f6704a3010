@@ -1,0 +1,39 @@
+import java.awt.Color;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class MyContentPane extends JPanel {
+
+	JLabel myLabel1;
+	JLabel myLabel2 = new JLabel();
+	JLabel myLabel3 = new JLabel();
+	JLabel myLabel4 = new JLabel();
+	JLabel myLabel5 = new JLabel();
+	
+	MyContentPane(){
+		
+		myLabel1 = new JLabel("Dit is een label");
+		myLabel1.setBackground(Color.RED);
+		myLabel1.setOpaque(true);
+		myLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		myLabel2 = new JLabel("Dit is een label");
+		myLabel2.setBackground(Color.BLUE);
+		myLabel2.setOpaque(true);
+		myLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		myLabel3 = new JLabel("Dit is een label");
+		myLabel3.setBackground(Color.YELLOW);
+		myLabel3.setOpaque(true);
+		myLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		myLabel1 = new JLabel("Dit is een label");
+		myLabel1.setBackground(Color.BLACK);
+		myLabel1.setOpaque(true);
+		myLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+	}
+	
+	
+}

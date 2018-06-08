@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Game {
+
+	MineField field;
+	Scanner input;
+	String grootte;
+	MineSweeper ms;
+	
+	Game (){
+		
+		ms = new MineSweeper();
+		input = new Scanner(System.in);
+		field = new MineField();
+		
+		String grootte = ms.getfieldSize();
+		
+		int aantalVelden = Integer.parseInt(grootte);
+		
+		field.setVeldGrootte(aantalVelden);
+		
+	}
+	
+	
+	public void play() {
+		
+		
+	}
+	
+}

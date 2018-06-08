@@ -1,0 +1,67 @@
+import java.util.HashMap;
+
+public class MineField {
+
+	HashMap<String, Square> vakje;
+	int bombFound;
+	Game game;
+	char a;
+	int aantal;
+	int veldGroote;
+	String hm;
+
+
+	MineField(){
+		vakje = new HashMap<String, Square>();
+		makeField();
+	}
+	
+	
+	void makeField() {
+		
+		for (int i = 1; i <= this.aantal; i++) {
+			for (int j = 1; j <= this.aantal; j++) {
+			String key = "" + ((char) ('a' + i)) + j;
+				vakje.put(key, new Square());
+			}
+		}
+//		System.out.println("DEBUG " + vakje.keySet());
+//		
+//		
+//		System.out.println(getVeldGroote() + " DEBUGG ");
+		
+		
+	}
+	
+	public int getVeldGroote() {
+		return veldGroote;
+	}
+
+
+	public void setVeldGroote(String veldGroote) {
+		this.veldGroote = Integer.parseInt(veldGroote);
+//		this.hm = veldGroote;
+//		try {
+//			this.aantal = Integer.parseInt(veldGroote);
+//		} catch (NumberFormatException e) {
+//			System.out.println("Geen nummer");
+//		}
+		
+		
+	}
+	
+	public void print() {
+		
+		
+		
+		
+		
+		if (MainClass.CHEAT) {
+			
+			
+		}
+		
+	}
+	
+	
+}

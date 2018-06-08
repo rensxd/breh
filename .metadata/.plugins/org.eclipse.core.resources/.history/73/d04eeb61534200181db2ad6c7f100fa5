@@ -1,0 +1,22 @@
+
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class MyFrame extends JFrame {
+	
+	
+	JFrame myFrame = new JFrame();
+	MyContentPane mycontentpane = new MyContentPane();
+
+	MyFrame(){
+		super();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("Resize Me");
+		setContentPane(mycontentpane.myPanel);
+		setLocationRelativeTo(null);
+		setVisible(true);
+		pack();
+	}
+	
+}

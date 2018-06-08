@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+public class MineSweeper {
+
+	// variables //
+
+	private Scanner scanner;
+	private Game game;
+	private boolean active;
+	private Sound sound;
+
+	public MineSweeper() {
+
+		// initialize //
+		sound = new Sound();
+		scanner = new Scanner(System.in);
+		active = true;
+		printWelcomeMessage();
+	}
+
+	public void start() {
+		
+		while (active) {
+			
+			sound.getSound("welcome.wav");
+			
+			int fieldSize = getFieldSizeInput();
+			int bombChance = getBombChanceInput();
+
+			game = new Game(fieldSize, bombChance);
+			game.play();
+			active = askNextGameFromUser();
+		}
+	}
+	// private methods //
+
+	private int getFieldSizeInput() {
+		int fieldSize = 0;
+		System.out.println("Geef de grootte van het veld (5-20):");
+		boolean validInputSize = false;
+
+		while (!validInputSize) {
+			if (scanner.hasNextInt()) {
+				fieldSize = scanner.nextInt();
+				if (fieldSize < 5 || fieldSize > 20) {
+					System.out.println("*** De grootte moet tussen 5 en 20 liggen! ***");
+				} else {
+					validInputSize = true;
+				}
+			} else {
+				System.out.println("Geef een geldige input aub");
+				scanner.next();
+			}
+		}
+		return fieldSize;
+	}
+
+	private int getBombChanceInput() {
+		int bombChance = 0;
+		System.out.println("Geef de kans dat een veld een bom bevat als % (10-25):");
+
+		boolean validInputBombChance = false;
+		while (!validInputBombChance) {
+			if (!scanner.hasNextInt()) {
+				System.out.println("geef een geldige input aub");
+				scanner.next();
+			} else {
+				bombChance = scanner.nextInt();
+				if (bombChance < 10 || bombChance > 25) {
+					System.out.println("*** De kans moet tussen 10 en 25 liggen! ***");
+				} else {
+					validInputBombChance = true;
+				}
+			}
+		}
+		return bombChance;
+	}
+
+	private void printWelcomeMessage() {
+		System.out.println("Welkom bij MineSweeper!");
+		System.out.println("Vind de bommen om het spel te winnen!");
+		System.out.println("");
+	}
+
+	private boolean askNextGameFromUser() {
+		boolean nextGame = true;
+		boolean validInput = false;
+
+		System.out.println("Wil je nog een keer spelen (ja/nee)?");
+
+		while (!validInput) {
+			String s = scanner.nextLine();
+			if (s.equalsIgnoreCase("ja")) {
+				nextGame = true;
+				validInput = true;
+			}
+			if (s.equalsIgnoreCase("nee")) {
+				System.out.println("Bedankt voor het spelen en hopelijk tot de volgende keer!");
+				nextGame = false;
+				validInput = true;
+			}
+		}
+		return nextGame;
+	}
+}

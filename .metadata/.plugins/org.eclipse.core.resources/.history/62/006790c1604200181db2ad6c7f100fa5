@@ -1,0 +1,15 @@
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class MyContentPane extends JPanel{
+
+	public void create() {
+		
+		JPanel myPanel = new JPanel();
+		myPanel.setPreferredSize(new Dimension(300, 300));
+		
+	}
+	
+}

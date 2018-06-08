@@ -1,0 +1,26 @@
+
+public class Zoo {
+		
+	Animal[] animals;
+	
+	public Zoo(String naam, int x) {
+		animals = new Animal[x];
+	}
+
+	public void addAnimal(Animal animal) {
+		
+		
+		
+	}
+	
+	public void animalEat() {
+		
+		for(Animal a : animals) {
+			a.Eat();
+		}
+		
+	}
+	
+	
+
+}

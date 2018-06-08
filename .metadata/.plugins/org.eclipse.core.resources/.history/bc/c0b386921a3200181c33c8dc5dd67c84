@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Game {
+
+	private MineField field;
+	private int grootte;
+	private Scanner scanner;
+	
+	
+	public Game(int grootte) {
+		this.grootte = grootte;
+
+		setGrootte(grootte);
+
+		field = new MineField();
+		field.setVeldGrootte(grootte);
+		field.makeField();
+		field.print();
+		play();
+		
+		
+		
+	}
+
+	void setGrootte(int grootte) {
+		this.grootte = grootte;
+	}
+
+	int getGrootte() {
+		return grootte;
+	}
+
+	public void play() {
+		
+		scanner.nextLine();
+	}
+
+}
